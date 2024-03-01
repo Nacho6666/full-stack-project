@@ -5,6 +5,7 @@ import { AxiosService } from '../axios.service';
 import { ButtonsComponent } from "../buttons/buttons.component";
 import { AuthContentComponent } from "../auth-content/auth-content.component";
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
 
 @Component({
     selector: 'app-content',
@@ -31,7 +32,10 @@ export class ContentComponent {
           login: input.login,
           password: input.password
         }
-      )
+      ).then( response => {
+        this.axiosService.setAuthToken(response.data.token);
+        this.componentToShow = "messages";
+      })
   }
 
   onRegister(input: any) {
@@ -44,7 +48,9 @@ export class ContentComponent {
           login: input.login,
           password: input.password
         }
-      )
+      ).then( response => {
+        this.axiosService.setAuthToken(response.data.token);
+        this.componentToShow = "messages";
+      })
   }
-
 }
