@@ -1,18 +1,26 @@
 package nacho404.web.fullstack.security.config;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+@RequiredArgsConstructor
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+
+    private final UserAuthProvider userAuthProvider;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -22,12 +30,17 @@ public class SecurityConfig {
          2. 其他則不需驗證就通過
          */
         http
+                .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .cors(customizer -> customizer.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests((authorize) -> {
-            authorize
-                    .requestMatchers("/auth*").authenticated()
-                    .anyRequest().permitAll();
-        });
+                    authorize
+                            .requestMatchers(HttpMethod.POST, "/login", "register").permitAll()
+                            .requestMatchers("/auth*").authenticated()
+                            .anyRequest().authenticated();
+//                            .anyRequest().permitAll();
+                });
 
         return http.build();
     }
