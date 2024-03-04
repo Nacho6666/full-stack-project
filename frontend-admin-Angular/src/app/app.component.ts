@@ -12,5 +12,5 @@ import { ContentComponent } from './content/content.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'frontend-Angular';
+  title = 'frontend-Admin';
 }

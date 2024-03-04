@@ -1,4 +1,13 @@
 <header class="app-header">
-    <img src={{logoSrc}} class="app-logo" alt="logo"/>
-    <h1 class="app-title"> {{pageTitle}} </h1>
+    <div class="app-header-text">
+        <img src={{logoSrc}} class="app-logo" alt="logo"/>
+        <h1 class="app-title"> {{pageTitle}} </h1>
+    </div>
+
+    <div class="app-header-button">
+        <app-buttons (loginEvent)="showComponent('login')" 
+                (logoutEvent)="showComponent('welcome')" />
+        <!-- <button class="btn btn-plain" style="margin: 10px;"
+        (click)="logoutEvent.emit()">Logout</button> -->
+    </div>
 </header>

@@ -1,15 +1,45 @@
-.app-logo {
-    height: 80px;
-}
-
 .app-header {
     background-color: #222;
-    height: 150px;
+    height: 100px;
     padding: 20px;
+    display: flex; /* 启用 flexbox 布局 */
+    align-items: center; /* 垂直居中对齐子项 */
+    justify-content: space-between; /* 子项之间的空间平均分布 */
+}
+
+.app-logo {
+    height: 80px;
+    margin-right: 10px; /* 在图像和标题之间添加一些间距 */
+}
+
+.app-header-text {
     color: white;
     text-align: center;
+    display: flex; /* 启用 flexbox 布局 */
+    align-items: center; /* 垂直居中对齐子项 */
+    justify-content: flex-start; /* 子项靠左对齐 */
+    padding: 10px; /* 根据需要添加一些内边距 */
+}
+
+.app-header-button {
+    display: flex; /* 启用 flexbox 布局 */
+    align-items: center; /* 垂直居中对齐子项 */
+    justify-content: flex-end; /* 子项靠左对齐 */
 }
 
 .app-title {
     font-size: 1.5em;
+    margin: 0; /* 移除标题的默认外边距 */
+    font-size: 24px; /* 根据需要调整字体大小 */
+}
+
+.btn-plain {
+    color: white; /* 设置文字颜色为白色 */
+    background-color: transparent; /* 背景色透明 */
+    border: none; /* 移除边框 */
+}
+
+/* 鼠标悬停时的样式 */
+.btn-plain:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* 鼠标悬停时轻微变化背景色，根据需要调整 */
 }

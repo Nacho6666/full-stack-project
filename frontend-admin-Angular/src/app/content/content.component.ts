@@ -12,11 +12,11 @@ import { response } from 'express';
     standalone: true,
     templateUrl: './content.component.html',
     styleUrl: './content.component.css',
-    imports: [WelcomeContentComponent, LoginFormComponent, ButtonsComponent, AuthContentComponent, CommonModule]
+    imports: [WelcomeContentComponent, LoginFormComponent, AuthContentComponent, CommonModule]
 })
 export class ContentComponent {
 
-  componentToShow: string = "welcome"
+  componentToShow: string = "login"
 
   constructor(private axiosService: AxiosService) {}
 
