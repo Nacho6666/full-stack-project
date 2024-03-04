@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) -> {
                     authorize
                             .requestMatchers(HttpMethod.POST, "/login", "register").permitAll()
+                            .requestMatchers(HttpMethod.GET, "/messages").permitAll()
                             .requestMatchers("/auth*").authenticated()
                             .anyRequest().authenticated();
 //                            .anyRequest().permitAll();
@@ -48,7 +49,7 @@ public class SecurityConfig {
     @Bean
     public UrlBasedCorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // 允许的源
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://localhost:5678")); // 允许的源
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE")); // 允许的HTTP方法
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "Accept")); // 允许的头部
         configuration.setAllowCredentials(true); // 允许凭证
