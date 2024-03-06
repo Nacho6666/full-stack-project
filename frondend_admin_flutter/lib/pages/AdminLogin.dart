@@ -27,8 +27,8 @@ class LoginPage extends StatelessWidget {
               hintText: 'Enter email or Phone number',
               filled: true,
               fillColor: Colors.blueGrey[50],
-              labelStyle: TextStyle(fontSize: 12),
-              contentPadding: EdgeInsets.only(left: 30),
+              labelStyle: const TextStyle(fontSize: 12),
+              contentPadding: const EdgeInsets.only(left: 30),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.blueGrey.shade50),
                 borderRadius: BorderRadius.circular(15),
@@ -44,7 +44,7 @@ class LoginPage extends StatelessWidget {
             decoration: InputDecoration(
               hintText: 'Password',
               counterText: 'Forgot password?',
-              suffixIcon: Icon(
+              suffixIcon: const Icon(
                 Icons.visibility_off_outlined,
                 color: Colors.grey,
               ),
